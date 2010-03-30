@@ -1,0 +1,41 @@
+[gui]
+	recentrepo = C:/Dev/testgit
+	recentrepo = C:/Dev/GitV1/V1Enterprise
+[diff]
+	tool = bc3
+[difftool "bc3"]
+	cmd = \"c:/program files (x86)/beyond compare 3/bcomp.exe\" \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+[merge]
+	tool = bc3
+[mergetool "bc3"]
+	cmd = \"c:/program files (x86)/beyond compare 3/bcomp.exe\" \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+	trustExitCode = true
+[user]
+	email = patrick.boudreaux@versionone.com
+	name = Patrick Boudreaux
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+ 
+ [alias]
+	ci = commit
+	co = checkout
+	st = status
+  ch = cherry -v origin
+  mine = log --author=Patrick
