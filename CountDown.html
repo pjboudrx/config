@@ -6,6 +6,7 @@
 		one_minute=one_second*60
 		one_hour=one_minute*60
 		one_day=one_hour*24
+		one_week=one_day*7
 			$(function(){
 				update();
 			});
@@ -14,19 +15,46 @@
 				today=new Date()
 				var releaseDay=new Date(2010, 06, 21) //Month is 0-11 in JavaScript
 
-				var remainder = releaseDay.getTime()-today.getTime();
-				var daysLeft = Math.floor((remainder)/(one_day));
+				var millisecondsLeft = releaseDay.getTime()-today.getTime();
+				var weeksLeft = Math.floor((millisecondsLeft)/(one_week));
 				
-				var foo = daysLeft*one_day
-				var hoursLeft = Math.floor((remainder-foo)/one_hour)
+				var delta = millisecondsLeft-(weeksLeft*one_week);
+				var daysLeft = Math.floor((delta)/(one_day));
 				
-				var bar = hoursLeft*one_hour
-				var minutesLeft = Math.floor((remainder-(foo+bar))/one_minute)
+				var totalRemainingDays = Math.floor(millisecondsLeft/one_day);
+				if(totalRemainingDays <= 2)
+				{	
+					$('body').css('background-color', '#ff0000');
+				}
+				else if(totalRemainingDays <= 7)
+				{	
+					$('body').css('background-color', '#880000');
+				}
+				else if(totalRemainingDays <= 14)
+				{	
+					$('body').css('background-color', '#440000');
+				}
+				else if(totalRemainingDays <= 21)
+				{	
+					$('body').css('background-color', '#220000');
+				}
+				else if(totalRemainingDays <= 30)
+				{	
+					$('body').css('background-color', '#110000');
+				}
 				
-				var baz = minutesLeft*one_minute;
-				var secondsLeft = Math.floor((remainder-(foo+bar+baz))/one_second)
+				delta = delta-(daysLeft*one_day);
+				var hoursLeft = Math.floor((delta)/one_hour)
 				
-				//$('#status').text(daysLeft + " days, " + hoursLeft + " hours, " + minutesLeft + " minutes, " + secondsLeft + " seconds until Release!");
+				delta = delta-(hoursLeft*one_hour);
+				var minutesLeft = Math.floor(delta/one_minute)
+				
+				delta = delta-(minutesLeft*one_minute);
+				var secondsLeft = Math.floor(delta/one_second)
+				
+				
+				
+				$('#weeks').text(weeksLeft);
 				$('#days').text(daysLeft);
 				$('#hours').text(hoursLeft);
 				$('#minutes').text(minutesLeft);
@@ -69,6 +97,7 @@
 		<div id="wrapper">
 			<table id="status">
 				<tbody>
+					<tr><td id="weeks" class="unit"></td><td class="label">weeks</td></tr>
 					<tr><td id="days" class="unit"></td><td class="label">days</td></tr>
 					<tr><td id="hours" class="unit"></td><td class="label">hours</td></tr>
 					<tr><td id="minutes" class="unit"></td><td class="label">minutes</td></tr>
