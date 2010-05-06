@@ -1,0 +1,80 @@
+<html>
+	<head>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript">
+		one_second=1000
+		one_minute=one_second*60
+		one_hour=one_minute*60
+		one_day=one_hour*24
+			$(function(){
+				update();
+			});
+			function update()
+			{
+				today=new Date()
+				var releaseDay=new Date(2010, 06, 21) //Month is 0-11 in JavaScript
+
+				var remainder = releaseDay.getTime()-today.getTime();
+				var daysLeft = Math.floor((remainder)/(one_day));
+				
+				var foo = daysLeft*one_day
+				var hoursLeft = Math.floor((remainder-foo)/one_hour)
+				
+				var bar = hoursLeft*one_hour
+				var minutesLeft = Math.floor((remainder-(foo+bar))/one_minute)
+				
+				var baz = minutesLeft*one_minute;
+				var secondsLeft = Math.floor((remainder-(foo+bar+baz))/one_second)
+				
+				//$('#status').text(daysLeft + " days, " + hoursLeft + " hours, " + minutesLeft + " minutes, " + secondsLeft + " seconds until Release!");
+				$('#days').text(daysLeft);
+				$('#hours').text(hoursLeft);
+				$('#minutes').text(minutesLeft);
+				$('#seconds').text(secondsLeft);
+				
+				setTimeout("update()",1000);
+			}
+		</script>
+		<style type="text/css">
+			body
+			{
+				background-color:#000000;
+				font-family:garamond;
+			}
+			#wrapper
+			{
+			}
+			#status 
+			{
+				width:100%;
+				color:#ffffff;
+				font-weight:bold;
+				font-size:5em;
+			}
+			#status .unit
+			{
+				width:50%;
+				padding-right:.5em;
+				text-align:right;
+			}
+			#status .label
+			{
+				width:50%;
+				text-align:left;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<table id="status">
+				<tbody>
+					<tr><td id="days" class="unit"></td><td class="label">days</td></tr>
+					<tr><td id="hours" class="unit"></td><td class="label">hours</td></tr>
+					<tr><td id="minutes" class="unit"></td><td class="label">minutes</td></tr>
+					<tr><td id="seconds" class="unit"></td><td class="label">seconds</td></tr>
+				</tbody>
+			<table>
+		</div>
+	</body>
+</html>
