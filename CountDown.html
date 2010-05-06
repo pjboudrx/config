@@ -3,46 +3,28 @@
 		<title>Release Countdown</title>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
 		<script type="text/javascript">
+		//Month is 0-11 in JavaScript
+		releaseDate=new Date(2010, 06, 21)
+		
 		one_second=1000
 		one_minute=one_second*60
 		one_hour=one_minute*60
 		one_day=one_hour*24
 		one_week=one_day*7
+		
 			$(function(){
 				update();
 			});
+			
 			function update()
 			{
-				today=new Date()
-				var releaseDay=new Date(2010, 06, 21) //Month is 0-11 in JavaScript
-
-				var millisecondsLeft = releaseDay.getTime()-today.getTime();
+				var millisecondsLeft = releaseDate.getTime()- new Date().getTime();
 				var weeksLeft = Math.floor((millisecondsLeft)/(one_week));
 				
 				var delta = millisecondsLeft-(weeksLeft*one_week);
 				var daysLeft = Math.floor((delta)/(one_day));
 				
-				var totalRemainingDays = Math.floor(millisecondsLeft/one_day);
-				if(totalRemainingDays <= 2)
-				{	
-					$('body').css('background-color', '#ff0000');
-				}
-				else if(totalRemainingDays <= 7)
-				{	
-					$('body').css('background-color', '#880000');
-				}
-				else if(totalRemainingDays <= 14)
-				{	
-					$('body').css('background-color', '#440000');
-				}
-				else if(totalRemainingDays <= 21)
-				{	
-					$('body').css('background-color', '#220000');
-				}
-				else if(totalRemainingDays <= 30)
-				{	
-					$('body').css('background-color', '#110000');
-				}
+				alertColor(millisecondsLeft);
 				
 				delta = delta-(daysLeft*one_day);
 				var hoursLeft = Math.floor((delta)/one_hour)
@@ -53,8 +35,6 @@
 				delta = delta-(minutesLeft*one_minute);
 				var secondsLeft = Math.floor(delta/one_second)
 				
-				
-				
 				$('#weeks').text(weeksLeft);
 				$('#days').text(daysLeft);
 				$('#hours').text(hoursLeft);
@@ -62,6 +42,21 @@
 				$('#seconds').text(secondsLeft);
 				
 				setTimeout("update()",1000);
+			}
+			
+			function alertColor(millisecondsLeft)
+			{
+				var totalRemainingDays = Math.floor(millisecondsLeft/one_day);
+				if(totalRemainingDays <= 2)
+					$('body').css('background-color', '#ff0000');
+				else if(totalRemainingDays <= 7)
+					$('body').css('background-color', '#880000');
+				else if(totalRemainingDays <= 14)
+					$('body').css('background-color', '#440000');
+				else if(totalRemainingDays <= 21)
+					$('body').css('background-color', '#220000');
+				else if(totalRemainingDays <= 30)
+					$('body').css('background-color', '#110000');
 			}
 		</script>
 		<style type="text/css">
@@ -90,6 +85,7 @@
 			{
 				width:50%;
 				text-align:left;
+				font-size:.75em;
 			}
 		</style>
 	</head>
