@@ -36,13 +36,18 @@
 				delta = delta-(minutesLeft*one_minute);
 				var secondsLeft = Math.floor(delta/one_second)
 				
-				$('#weeks').text(weeksLeft);
-				$('#days').text(daysLeft);
-				$('#hours').text(hoursLeft);
-				$('#minutes').text(minutesLeft);
-				$('#seconds').text(secondsLeft);
+				$('#weeks').text(pad2(weeksLeft));
+				$('#days').text(pad2(daysLeft));
+				$('#hours').text(pad2(hoursLeft));
+				$('#minutes').text(pad2(minutesLeft));
+				$('#seconds').text(pad2(secondsLeft));
 				
 				setTimeout("update()",1000);
+			}
+			
+			function pad2(number) 
+			{
+				return (number < 10 ? '0' : '') + number
 			}
 			
 			function alertColor(millisecondsLeft)
@@ -79,7 +84,7 @@
 			{
 				color:#00ff00;
 				font-weight:bold;
-				font-size:4em;
+				font-size:6em;
 			}
 			#status span
 			{
@@ -87,7 +92,7 @@
 			}
 			#status .unit
 			{
-				font-size:1.5em;
+				
 			}
 			#status .label
 			{
@@ -112,15 +117,7 @@
 	<body>
 		<div id="wrapper" class="container">
 			<div id="status" class="centered">
-				<span id="weeks" class="unit"></span>
-				<span class="label">:</span>
-				<span id="days" class="unit"></span>
-				<span class="label">:</span>
-				<span id="hours" class="unit"></span>
-				<span class="label">:</span>
-				<span id="minutes" class="unit"></span>
-				<span class="label">:</span>
-				<span id="seconds" class="unit"></span>
+<span id="weeks" class="unit"></span><span class="label">:</span><span id="days" class="unit"></span><span class="label">:</span><span id="hours" class="unit"></span><span class="label">:</span><span id="minutes" class="unit"></span><span class="label">:</span><span id="seconds" class="unit"></span>
 			</div>
 			<!-- <table id="status">
 				<tbody>
