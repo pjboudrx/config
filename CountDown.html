@@ -1,3 +1,4 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
 	<head>
 		<title>Release Countdown</title>
@@ -62,37 +63,66 @@
 		<style type="text/css">
 			body
 			{
+				text-align: center;
+				min-width: 900px;
+				
 				background-color:#000000;
-				font-family:verdana,sans-serif;
+				font-family:courier new,sans-serif;
 			}
 			#wrapper
 			{
+				height: 600px;
+				margin-left: auto;
+				margin-right: auto;
 			}
 			#status 
 			{
-				width:100%;
-				color:#ffffff;
+				color:#00ff00;
 				font-weight:bold;
-				font-size:6.5em;
+				font-size:4em;
+			}
+			#status span
+			{
+				margin:0;
 			}
 			#status .unit
 			{
-				width:50%;
-				padding-right:.5em;
-				text-align:right;
+				font-size:1.5em;
 			}
 			#status .label
 			{
-				width:50%;
-				text-align:left;
-				font-size:.75em;
+				
 			}
+			.container {
+			  position: relative;
+			}
+
+			.centered {
+			  position: absolute;
+			  top: 50%;
+			  right: 0;
+			  bottom: 0;
+			  left: 0;
+			  width: 100%;
+			  margin: auto;
+			} 
 		</style>
 	</head>
 
 	<body>
-		<div id="wrapper">
-			<table id="status">
+		<div id="wrapper" class="container">
+			<div id="status" class="centered">
+				<span id="weeks" class="unit"></span>
+				<span class="label">:</span>
+				<span id="days" class="unit"></span>
+				<span class="label">:</span>
+				<span id="hours" class="unit"></span>
+				<span class="label">:</span>
+				<span id="minutes" class="unit"></span>
+				<span class="label">:</span>
+				<span id="seconds" class="unit"></span>
+			</div>
+			<!-- <table id="status">
 				<tbody>
 					<tr><td id="weeks" class="unit"></td><td class="label">weeks</td></tr>
 					<tr><td id="days" class="unit"></td><td class="label">days</td></tr>
@@ -100,7 +130,7 @@
 					<tr><td id="minutes" class="unit"></td><td class="label">minutes</td></tr>
 					<tr><td id="seconds" class="unit"></td><td class="label">seconds</td></tr>
 				</tbody>
-			<table>
+			<table> -->
 		</div>
 	</body>
 </html>
